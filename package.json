@@ -23,7 +23,7 @@
   "devDependencies": {
     "@types/node": "^24.12.4",
     "knip": "^6.32.0",
-    "typescript": "~6.0.2",
+    "typescript": "~7.0.2",
     "vite-plus": "0.2.8"
   },
   "engines": {
