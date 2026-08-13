@@ -1,5 +1,5 @@
 name: Expand dotenvx envs
-description: Expand dotenvx stored values into GitHub Actions variables
+description: Decrypt dotenvx env values into step outputs and job env
 author: kentrino
 
 branding:
@@ -8,16 +8,14 @@ branding:
 
 inputs:
   private_key:
-    description: dotenvx private key used to decrypt environment files
+    description: dotenvx private key used to decrypt the env file
     required: true
-  variables:
-    description: Newline-separated names of variables to expand
-    required: false
-    default: ''
-  expand_all:
-    description: Expand all dotenvx variables instead of a named list
-    required: false
-    default: 'false'
+  file:
+    description: Path to the dotenvx env file to decrypt
+    required: true
+  keys:
+    description: Newline-separated names to expand, or "*" for all
+    required: true
 
 runs:
   using: node24

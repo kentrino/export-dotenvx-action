@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # throwaway fixture key; not a real secret
+      DOTENV_PRIVATE_KEY_CI: dc08409876f6c2da7e5123380b071b131977ffbf2aadb78945e1579514dbae4b
     steps:
       - uses: actions/checkout@v4
 
@@ -21,10 +24,40 @@ jobs:
 
       - run: pnpm build
 
-      - name: Run local action
+      - name: Expand named keys
+        id: dotenv
         uses: ./
         with:
-          private_key: dummy-key
-          variables: |
-            CLOUDFLARE_API_KEY
-          expand_all: false
+          private_key: ${{ env.DOTENV_PRIVATE_KEY_CI }}
+          file: fixtures/.env.ci
+          keys: |
+            HELLO
+            PLAIN
+
+      - name: Check named keys
+        run: |
+          test "$HELLO" = "hello-from-ci"
+          test "$PLAIN" = "visible"
+          test "${{ steps.dotenv.outputs.HELLO }}" = "hello-from-ci"
+          test "${{ steps.dotenv.outputs.PLAIN }}" = "visible"
+          if [ -n "${EXTRA+x}" ]; then
+            echo "EXTRA should not be exported for named keys" >&2
+            exit 1
+          fi
+
+      - name: Expand all keys
+        uses: ./
+        with:
+          private_key: ${{ env.DOTENV_PRIVATE_KEY_CI }}
+          file: fixtures/.env.ci
+          keys: '*'
+
+      - name: Check all keys
+        run: |
+          test "$HELLO" = "hello-from-ci"
+          test "$EXTRA" = "should-not-leak"
+          test "$PLAIN" = "visible"
+          if [ -n "${DOTENV_PUBLIC_KEY_CI+x}" ]; then
+            echo "DOTENV_PUBLIC_KEY_CI should not be exported for keys: '*'" >&2
+            exit 1
+          fi

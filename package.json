@@ -1,6 +1,6 @@
 {
   "name": "expand-dotenvx-envs-action",
-  "description": "Expand dotenvx stored values into GitHub Actions variables",
+  "description": "Decrypt dotenvx env values into step outputs and job env",
   "version": "0.0.1",
   "private": true,
   "type": "module",
