@@ -7,3 +7,4 @@ coverage/
 *.code-workspace
 .env
 .env.test
+dist
