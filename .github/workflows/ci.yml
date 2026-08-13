@@ -1,32 +1,40 @@
 name: CI
 
 on:
-  push:
   pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
+  ready:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
       # throwaway fixture key; not a real secret
       DOTENV_PRIVATE_KEY_CI: dc08409876f6c2da7e5123380b071b131977ffbf2aadb78945e1579514dbae4b
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v4
-
-      - uses: actions/setup-node@v4
+      - uses: voidzero-dev/setup-vp@v1.17.0
         with:
-          node-version: 24
-          cache: pnpm
+          node-version: "24"
+          cache: true
+          run-install: false
 
-      - run: pnpm install --frozen-lockfile
+      - run: vp install --frozen-lockfile
+      - run: vp run ready
 
-      - run: pnpm test
+      - name: Check committed dist is up to date
+        run: git diff --exit-code -- dist
 
-      - run: pnpm build
-
-      - name: Expand named keys
+      - name: Export named keys
         id: dotenv
         uses: ./
         with:
@@ -47,12 +55,12 @@ jobs:
             exit 1
           fi
 
-      - name: Expand all keys
+      - name: Export all keys
         uses: ./
         with:
           private_key: ${{ env.DOTENV_PRIVATE_KEY_CI }}
           file: fixtures/.env.ci
-          keys: '*'
+          keys: "*"
 
       - name: Check all keys
         run: |

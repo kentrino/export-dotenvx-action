@@ -1,4 +1,4 @@
-name: Expand dotenvx envs
+name: Export dotenvx envs
 description: Decrypt dotenvx env values into step outputs and job env
 author: kentrino
 
@@ -14,7 +14,7 @@ inputs:
     description: Path to the dotenvx env file to decrypt
     required: true
   keys:
-    description: Newline-separated names to expand, or "*" for all
+    description: Newline-separated names to export, or "*" for all
     required: true
 
 runs:

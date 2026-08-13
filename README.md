@@ -2,7 +2,7 @@
 
 Decrypt dotenvx-stored values into step outputs and the job environment.
 
-Named keys only. Omitted `keys` is an error; use `*` to expand every secret.
+Named keys only. Omitted `keys` is an error; use `*` to export every secret.
 
 ```yaml
 - uses: kentrino/expand-dotenvx-envs-action@v0.0.1
@@ -22,16 +22,16 @@ Named keys only. Omitted `keys` is an error; use `*` to expand every secret.
 - run: echo "token length ${#CLOUDFLARE_API_KEY}"
 ```
 
-Expand every key except `DOTENV_PUBLIC_KEY*`:
+Export every key except `DOTENV_PUBLIC_KEY*`:
 
 ```yaml
 - uses: kentrino/expand-dotenvx-envs-action@v0.0.1
   with:
     private_key: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
     file: .env.ci
-    keys: '*'
+    keys: "*"
 ```
 
 ## License
 
-MIT. `src/parse-env.ts` is adapted from [motdotla/dotenv](https://github.com/motdotla/dotenv) (BSD-2-Clause); see `THIRD_PARTY_NOTICES.md`.
+MIT. Portions are adapted from [motdotla/dotenv](https://github.com/motdotla/dotenv) (BSD-2-Clause) and [dotenvx/dotenvx](https://github.com/dotenvx/dotenvx) (BSD-3-Clause); see `THIRD_PARTY_NOTICES.md`.

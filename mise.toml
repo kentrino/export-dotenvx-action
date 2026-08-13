@@ -12,3 +12,20 @@ run = "pnpm build"
 [tasks.test]
 description = "Run unit tests with Vitest"
 run = "pnpm test"
+
+[tasks.check]
+alias = "c"
+description = "Run repository checks"
+run = "pnpm check"
+
+[tasks.knip]
+description = "Find unused files, exports, and dependencies"
+run = "pnpm knip"
+
+[tasks.ready]
+description = "Check, test, and build"
+run = "pnpm ready"
+
+[tasks.install-hooks]
+description = "Install the Vite+ Git hook dispatcher"
+run = "vp config"

@@ -1,31 +1,39 @@
 {
-  "name": "export-dotenvx-action", 
-  "description": "Decrypt dotenvx env values into step outputs and job env",
+  "name": "export-dotenvx-action",
   "version": "0.0.1",
   "private": true,
+  "description": "Decrypt dotenvx env values into step outputs and job env",
+  "license": "MIT",
   "type": "module",
   "exports": {
     ".": "./dist/index.js"
   },
-  "engines": {
-    "node": ">=24.0.0"
-  },
   "scripts": {
-    "build": "rolldown -c",
-    "build:watch": "rolldown -c --watch",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "build": "vp pack",
+    "check": "vp check",
+    "knip": "knip",
+    "prepare": "vp config",
+    "ready": "vp run check && vp run knip && vp test && vp pack",
+    "test": "vp test"
   },
-  "license": "MIT",
   "dependencies": {
     "@actions/core": "^3.0.0",
     "eciesjs": "^0.5.0"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "rolldown": "^1.0.0",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.10"
+    "@types/node": "^24.12.4",
+    "knip": "^6.32.0",
+    "typescript": "~6.0.2",
+    "vite-plus": "0.2.8"
   },
-  "packageManager": "pnpm@10.33.0"
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@0.2.8",
+      "vitest": "4.1.10"
+    }
+  }
 }
