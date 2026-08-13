@@ -20,7 +20,7 @@ jobs:
       # throwaway fixture key; not a real secret
       DOTENV_PRIVATE_KEY_CI: dc08409876f6c2da7e5123380b071b131977ffbf2aadb78945e1579514dbae4b
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: voidzero-dev/setup-vp@v1.17.0
         with:
