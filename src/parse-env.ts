@@ -1,3 +1,8 @@
+// Ported from motdotla/dotenv `parseRegex` (lib/main.js).
+// Copyright (c) 2015, Scott Motte. All rights reserved.
+// SPDX-License-Identifier: BSD-2-Clause
+// Full license text: THIRD_PARTY_NOTICES.md
+
 const LINE =
   /(?:^|^)\s*(?:export\s+)?([\w.-]+)(?:\s*=\s*?|:\s+?)(\s*'(?:\\'|[^'])*'|\s*"(?:\\"|[^"])*"|\s*`(?:\\`|[^`])*`|[^#\r\n]+)?\s*(?:#.*)?(?:$|$)/gm
 

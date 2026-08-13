@@ -31,3 +31,7 @@ Expand every key except `DOTENV_PUBLIC_KEY*`:
     file: .env.ci
     keys: '*'
 ```
+
+## License
+
+MIT. `src/parse-env.ts` is adapted from [motdotla/dotenv](https://github.com/motdotla/dotenv) (BSD-2-Clause); see `THIRD_PARTY_NOTICES.md`.
