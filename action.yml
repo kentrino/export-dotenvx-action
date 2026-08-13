@@ -1,0 +1,24 @@
+name: Expand dotenvx envs
+description: Expand dotenvx stored values into GitHub Actions variables
+author: kentrino
+
+branding:
+  icon: unlock
+  color: green
+
+inputs:
+  private_key:
+    description: dotenvx private key used to decrypt environment files
+    required: true
+  variables:
+    description: Newline-separated names of variables to expand
+    required: false
+    default: ''
+  expand_all:
+    description: Expand all dotenvx variables instead of a named list
+    required: false
+    default: 'false'
+
+runs:
+  using: node24
+  main: dist/index.js

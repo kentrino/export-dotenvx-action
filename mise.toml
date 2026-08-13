@@ -1,0 +1,10 @@
+[tools]
+node = "24"
+pnpm = "10.33.0"
+
+[env._]
+path = ["{{config_root}}/node_modules/.bin"]
+
+[tasks.build]
+description = "Bundle the GitHub Action into dist/"
+run = "pnpm build"

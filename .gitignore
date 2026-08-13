@@ -1,0 +1,9 @@
+node_modules/
+coverage/
+*.log
+*.tsbuildinfo
+.DS_Store
+.idea/
+*.code-workspace
+.env
+.env.test
