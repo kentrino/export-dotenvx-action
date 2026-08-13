@@ -12,17 +12,27 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          app-id: ${{ vars.KENTRINO_BOT_APP_ID }}
+          private-key: ${{ secrets.KENTRINO_BOT_PRIVATE_KEY }}
+
       - uses: googleapis/release-please-action@v4
         id: release
+        with:
+          token: ${{ steps.app-token.outputs.token }}
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         if: ${{ steps.release.outputs.release_created }}
+        with:
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Update major and minor tags
         if: ${{ steps.release.outputs.release_created }}
         run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git config user.name "${{ steps.app-token.outputs.app-slug }}[bot]"
+          git config user.email "${{ vars.KENTRINO_BOT_APP_ID }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com"
           git tag -f "v${{ steps.release.outputs.major }}"
           git tag -f "v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}"
           git push origin "v${{ steps.release.outputs.major }}" --force
