@@ -1,11 +1,11 @@
-# expand-dotenvx-envs-action
+# export-dotenvx-action
 
 Decrypt dotenvx-stored values into step outputs and the job environment.
 
 Named keys only. Omitted `keys` is an error; use `*` to export every secret.
 
 ```yaml
-- uses: kentrino/expand-dotenvx-envs-action@v0.0.1
+- uses: kentrino/export-dotenvx-action@v0.0.1
   id: dotenv
   with:
     private_key: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
@@ -25,7 +25,7 @@ Named keys only. Omitted `keys` is an error; use `*` to export every secret.
 Export every key except `DOTENV_PUBLIC_KEY*`:
 
 ```yaml
-- uses: kentrino/expand-dotenvx-envs-action@v0.0.1
+- uses: kentrino/export-dotenvx-action@v0.0.1
   with:
     private_key: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
     file: .env.ci
