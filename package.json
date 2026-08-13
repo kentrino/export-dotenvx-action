@@ -1,5 +1,5 @@
 {
-  "name": "expand-dotenvx-envs-action",
+  "name": "export-dotenvx-action", 
   "description": "Decrypt dotenvx env values into step outputs and job env",
   "version": "0.0.1",
   "private": true,
