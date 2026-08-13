@@ -1,6 +1,6 @@
 {
   "name": "export-dotenvx-action",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "description": "Decrypt dotenvx env values into step outputs and job env",
   "license": "MIT",
