@@ -12,7 +12,9 @@
   },
   "scripts": {
     "build": "rolldown -c",
-    "build:watch": "rolldown -c --watch"
+    "build:watch": "rolldown -c --watch",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "license": "MIT",
   "dependencies": {
@@ -22,7 +24,8 @@
   "devDependencies": {
     "@types/node": "^24.0.0",
     "rolldown": "^1.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
   },
   "packageManager": "pnpm@10.33.0"
 }

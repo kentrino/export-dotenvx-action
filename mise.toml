@@ -8,3 +8,7 @@ path = ["{{config_root}}/node_modules/.bin"]
 [tasks.build]
 description = "Bundle the GitHub Action into dist/"
 run = "pnpm build"
+
+[tasks.test]
+description = "Run unit tests with Vitest"
+run = "pnpm test"

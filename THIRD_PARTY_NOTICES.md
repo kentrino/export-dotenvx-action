@@ -6,6 +6,7 @@ This project includes code derived from the following works.
 
 `src/parse-env.ts` is adapted from `parseRegex` in
 [motdotla/dotenv](https://github.com/motdotla/dotenv) (`lib/main.js`).
+`tests/fixtures/dotenv.env` is copied from dotenv `tests/.env`.
 
 Copyright (c) 2015, Scott Motte
 All rights reserved.
